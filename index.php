@@ -8,6 +8,8 @@ define('ROOT', dirname(__FILE__));
 require_once (ROOT.'/components/Router.php');
 
 //подключение бд
+require_once (ROOT.'/components/Db.php');
+
 
 //вызов роута
 $router = new Router();

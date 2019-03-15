@@ -10,43 +10,54 @@ document.addEventListener('DOMContentLoaded', function(){
 
     btn.onclick =  function() {
         if(checkError(textClass.value)) {
-            preloader('show');
-            sendHead();
+
+            var arrUrl = textClass.value.split('\n') ,
+                resTable = '<ul>'
+
+            for (key in arrUrl) {
+                if(arrUrl[key].trim()) {
+                    resTable += '<li><span>' + arrUrl[key] + ' : </span><span id="res-' + key + '"></span></li><img class="preloader" id="preloader-' + key + '" src="/template/img/preload.gif">';
+                }
+            }
+
+            resTable += '</ul>';
+            resDiv.innerHTML = resTable;
+
+            for (key in arrUrl) {
+                sendHead(arrUrl[key], key);
+            }
         }
     };
-    
+
     function checkError(val) {
         if(val.trim()) {
             error.innerText = '';
             return true
         } else {
-            error.innerText     = 'введите адрес';
+            error.innerText = 'введите адрес';
             return false
         }
     }
 
-    function sendHead() {
-        var formData = new FormData(document.forms.form);
+    function sendHead(url, key) {
+
         var xhr = new XMLHttpRequest();
-        var resTitle = '';
 
         xhr.open("POST", urlAjax);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4){
-                var res = JSON.parse(xhr.responseText);
-                for (key in res.data) {
-                    if (res.data[key] == null) {
-                        res.data[key] = 'тайтл не найден';
-                    }
-                    resTitle += '<p class="res-title">'+ key + ' : ' + res.data[key] + '</p>';
-                }
-                preloader('hide');
-                resDiv.innerHTML = resTitle;
+                var dataRes = JSON.parse(xhr.responseText),
+                    title = document.querySelector('#res-'+key),
+                    preloader = document.querySelector('#preloader-'+key);
+
+                title.innerText = dataRes.data == null ? 'ничего не найдено' : dataRes.data;
+                preloader.remove();
             }
         }
 
-        xhr.send(formData);
+        xhr.send("url=" + url);
 
     }
 

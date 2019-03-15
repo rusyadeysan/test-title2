@@ -1,13 +1,7 @@
 <?
 if(!empty($_REQUEST['url'])){
-    $urls = explode(PHP_EOL, $_REQUEST['url']);
-    $res = [];
-    foreach ($urls as $url){
-        $url = trim($url);
-        if(!empty($url)) {
-            $res[$url] = get_title($url);
-        }
-    }
+
+    $res = get_title($_REQUEST['url']);
     exit (json_encode(['data' => $res]));
 
 }
