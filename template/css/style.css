@@ -39,3 +39,7 @@
     margin-left: -24px;
     margin-top: -19px;
 }
+
+a {
+    text-decoration: none;
+}

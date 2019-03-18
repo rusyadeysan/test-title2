@@ -1,17 +1,12 @@
 <?
-if(!empty($_REQUEST['url'])){
+include_once '/var/www/html/models/App.php';
+$url = $_REQUEST['url'];
+if(!empty($url)){
 
-    $res = get_title($_REQUEST['url']);
+    $app = new App;
+
+    $res = $app->get_title($url);
+    $app->add_info_url($url, $res);
     exit (json_encode(['data' => $res]));
 
-}
-
-function get_title($url){
-    $str = file_get_contents($url);
-    if(strlen($str)>0){
-        $str = trim(preg_replace('/\s+/', ' ', $str));
-        preg_match("/\<title\>(.*)\<\/title\>/i",$str,$title);
-        return $title[1];
-
-    }
 }

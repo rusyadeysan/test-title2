@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             for (key in arrUrl) {
                 if(arrUrl[key].trim()) {
-                    resTable += '<li><span>' + arrUrl[key] + ' : </span><span id="res-' + key + '"></span></li><img class="preloader" id="preloader-' + key + '" src="/template/img/preload.gif">';
+                    resTable += '<li><span><a href="/statistic/?url=' + arrUrl[key] + '">' + arrUrl[key] + ' : </a></span><span id="res-' + key + '"></span></li><img class="preloader" id="preloader-' + key + '" src="/template/img/preload.gif">';
                 }
             }
 

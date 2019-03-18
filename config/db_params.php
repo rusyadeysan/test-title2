@@ -1,8 +1,8 @@
 <?php
 
 return array(
-    'host' => '159.69.107.169',
-    'dbname' => 'url_info',
+    'host' => 'localhost',
+    'dbname' => 'get_titile',
     'user' => 'admin',
-    'password' => 'Asot1000&',
+    'password' => 'Asot1000?',
 );

@@ -7,9 +7,6 @@
     </head>
     <body>
     <div id="main">
-        <div class="link">
-            <a href="/statistic/">Сттатистика</a>
-        </div>
         <h3>Введите URL адреса</h3>
         <p class="text">(адрес нужно вводить с новой строки)</p>
         <p class="error"></p>

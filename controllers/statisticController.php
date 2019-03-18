@@ -5,8 +5,6 @@ class statisticController {
 
     public function actionIndex () {
 
-        $db = Db::getConnection();
-
         include_once ROOT . '/views/statistic.php';
         return true;
 
